@@ -1,0 +1,35 @@
+# 平台页面按菜单截图并生成文档 - 配置
+# 请根据实际平台修改 base_url 和 pages
+
+base_url: "http://xxxx.com/"
+
+# 按顺序的页面列表（与菜单顺序一致）
+pages:
+  - name: "登录"
+    url: "http://xxxx.com/login"
+
+  - name: "数据分析"
+    url: "http://xxxx.com/dashboard/analysis"
+
+# 登录：运行时会提示粘贴 Cookie，不输入则跳过
+login:
+  enabled: true
+  # cookie_domain 可选，不填则从 base_url 自动取；若 Cookie 的 domain 与站点不一致可在此指定
+  # cookie_domain: "admin.nongyudi.com"
+
+browser:
+  headless: true
+  # 可设置浏览器宽高，适应于H5
+  viewport_width: 1500
+  viewport_height: 1080
+  # viewport_width: 1920
+  # viewport_height: 1080
+  # viewport_width: 390
+  # viewport_height: 844
+  full_page: true
+  wait_after_load: 2
+
+output:
+  dir: "./output"
+  doc_name: "平台页面文档"
+  image_format: "png"

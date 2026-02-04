@@ -1,0 +1,40 @@
+# 平台页面按菜单截图并生成文档 - 配置示例
+# 复制为 config.yaml 后修改
+
+# 平台入口 URL（需先登录或为公开页）
+base_url: "https://example.com"
+
+# 登录（可选）：配置后运行时会提示粘贴 Cookie，再按顺序截图
+# login:
+#   enabled: true
+#   cookie_domain: "example.com"     # 可选，不填则从 base_url 自动取
+
+# 菜单配置方式二选一：
+# 方式1：直接给出按顺序的页面 URL 列表
+pages:
+  - name: "首页"
+    url: "https://example.com/"
+  - name: "用户管理"
+    url: "https://example.com/admin/users"
+  - name: "系统设置"
+    url: "https://example.com/settings"
+
+# 方式2：从页面自动解析菜单（留空 pages 时使用）
+# menu_selector: "nav.main-menu a"   # 菜单链接的 CSS 选择器
+# menu_container: "body"              # 可选，限制解析范围
+
+# 浏览器与截图（默认使用本机已安装的 Chrome，无需 playwright install）
+browser:
+  channel: "chrome"        # 使用本机 Chrome；可改为 "msedge" 使用 Edge；设为 null 则用 Playwright 自带的 Chromium（需执行 playwright install chromium）
+  headless: true           # 无头模式
+  viewport_width: 1920
+  viewport_height: 1080
+  full_page: true          # 整页截图（长图）
+  wait_after_load: 2       # 页面加载后等待秒数
+  scroll_delay: 0.5        # 滚动间隔（整页截图时）
+
+# 输出
+output:
+  dir: "./output"          # 截图与文档输出目录
+  doc_name: "平台页面文档"  # 生成的 PDF 文件名（不含扩展名）
+  image_format: "png"     # 截图格式 png/jpeg
